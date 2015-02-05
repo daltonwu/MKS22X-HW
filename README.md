@@ -22,7 +22,8 @@ _**bolded italic???**_
 
 `meta`
 
-`[Class website](http://apcs-z.stuycs.org)
+```
+[Class website](http://apcs-z.stuycs.org)
 
 > ~~I think this is supposed to be
 Some kind of block quote thing
@@ -40,4 +41,5 @@ _italic_
 
 _**bolded italic???**_
 
-`meta``
+`meta`
+```
