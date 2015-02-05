@@ -19,3 +19,25 @@ __bold__
 _italic_
 
 _**bolded italic???**_
+
+`meta`
+
+`[Class website](http://apcs-z.stuycs.org)
+
+> ~~I think this is supposed to be
+Some kind of block quote thing
+Couldn't find a poem or whatever
+Something something something~~
+Oh snap block quotes don't preserve format, and I guess I only need one less-than sign
+
+**bold**
+
+*italic*
+
+__bold__
+
+_italic_
+
+_**bolded italic???**_
+
+`meta``
