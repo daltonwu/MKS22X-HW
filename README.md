@@ -1,2 +1,2 @@
 # MKS22X-HW
-<h5>APCS with Mr. Zamansky, spring 2015 homework respository</h5>
+<h6>APCS with Mr. Zamansky, spring 2015 homework respository</h6>
