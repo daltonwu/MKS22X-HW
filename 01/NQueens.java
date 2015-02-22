@@ -6,7 +6,7 @@ public class NQueens {
 		try {
 			n = Integer.parseInt(args[0]);
 		} catch (Exception e) {
-			System.out.println("Uh, what are you doing?");
+				System.out.println("Usage: java NQueens [n, the size of the board]");
 			System.exit(1);
 		}
 		
