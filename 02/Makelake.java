@@ -1,6 +1,7 @@
 import java.util.Scanner;
 import java.io.File;
-public class Driver {
+
+public class Makelake {
 	// R, C, E, N
 	private static int[][] land;
 	private static int R, C, E, N;
@@ -24,6 +25,10 @@ public class Driver {
 			for(int c=0; c<C; c++) {
 				land[r][c] = Integer.parseInt(split[c]);
 			}
+		}
+		
+		while(input.hasNext()) {
+			String[] line = input.nextLine().split(" ");
 		}
 	}
 }
