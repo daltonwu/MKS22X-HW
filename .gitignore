@@ -15,3 +15,6 @@ hs_err_pid*
 .*.swp
 .\#*\#
 *~
+
+# I guess I should also ignore any .out files
+*.out
