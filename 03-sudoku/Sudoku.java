@@ -38,12 +38,12 @@ public class Sudoku {
 			for(int g=0; g<board.size(); g++) {
 				s += board.get(i).get(g) + " ";
 				if(g!=board.size()-1 && (g+1)%unit==0) {
-					s += "| "; // Vertical pipe
+					s += "[37m|[0m "; // Vertical pipe
 				}
 			}
 			s += "\n";
 			if(i!=board.size()-1 && (i+1)%unit==0) {
-				s += "[1m" + new String(new char[board.size()+unit-1]).replace("\0", "― ") + "]\n"; // 'Horizontal Bar' U+2015
+				s += "[37m" + new String(new char[board.size()+unit-1]).replace("\0", "― ") + "[0m\n"; // 'Horizontal Bar' U+2015
 			}
 		}
 		System.out.println(s);
