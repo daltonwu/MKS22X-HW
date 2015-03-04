@@ -101,8 +101,8 @@ public class Sudoku {
 				for(int foo=1; foo<=board.size(); foo++) {
 					board.get(row).set(g,String.valueOf(foo));
 					if(check(row,g) /*&& solveH(row)*/) {
+						System.out.printf("%s%n", board.get(row).get(g));
 						return solveH(row);
-						System.out.printf("%s ", board.get(row).get(g));
 					}
 					else {
 						board.get(row).set(g,"-");
