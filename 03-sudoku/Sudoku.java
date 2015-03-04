@@ -37,6 +37,9 @@ public class Sudoku {
 		
 		print();
 		Print();
+		
+		solve();
+		print();
 	}
 	
 	private static void print() {
@@ -47,7 +50,7 @@ public class Sudoku {
 					s += "[32m";
 				}
 				else {
-					s += "[1;33m";
+					s += "[1;31m";
 				}
 				s += board.get(i).get(g) + "[0m ";
 				if(g!=board.size()-1 && (g+1)%unit==0) {
@@ -77,5 +80,59 @@ public class Sudoku {
 			}
 		}
 		System.out.println(s);
+	}
+	
+	private static void solve() {
+		solveH(0);
+	}
+	
+	private static boolean solveH(int row) {
+		// if done, return true
+		// if not done:
+		// 		find next empty thing
+		// 		at next empty thing, get foo value
+		// 		check if foo value work
+		// 		now check if foo value work in future
+		// 		blah
+		if(row >= board.size()) return true;
+		
+		for(int g=0; g<board.size(); g++) {
+			if(board.get(row).get(g).equals("-")) {
+				for(int foo=1; foo<=board.size(); foo++) {
+					board.get(row).set(g,String.valueOf(foo));
+					if(check(row,g) /*&& solveH(row)*/) {
+						return solveH(row);
+						System.out.printf("%s ", board.get(row).get(g));
+					}
+					else {
+						board.get(row).set(g,"-");
+						//System.out.printf("wefoij");
+					}
+				}
+				return false;
+			}
+		}
+		
+		return solveH(row+1);
+	}
+	
+	private static boolean check(int row, int column) {
+		// rows and columns
+		String thisThing = board.get(row).get(column);
+		for(int g=0; g<board.size(); g++) {
+			if(g!=column && board.get(row).get(g).equals(thisThing)) return false;
+		}
+		for(int i=0; i<board.size(); i++) {
+			if(i!=row && board.get(i).get(column).equals(thisThing)) return false;
+		}
+		
+		// that darn box
+		for(int i=row/unit; i<row/unit+unit; i++) {
+			for(int g=column/unit; g<column/unit+unit; g++) {
+				if(i!=row && g!=column && board.get(i).get(g).equals(thisThing)) return false;
+			}
+		}
+		
+		return true;
 	}
 }
