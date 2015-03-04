@@ -4,6 +4,7 @@ import java.io.File;
 
 public class Sudoku {
 	private static ArrayList<ArrayList<String>> board;
+	private static ArrayList<ArrayList<Boolean>> originals; // make different color = true; original = false;
 	
 	// Store side length of one small board unit
 	private static int unit;
@@ -15,35 +16,64 @@ public class Sudoku {
 		} catch(Exception e) {}
 		
 		board = new ArrayList<ArrayList<String>>();
+		originals = new ArrayList<ArrayList<Boolean>>();
 		
 		while(input.hasNext()) {
 			String line = input.nextLine();
 			
 			ArrayList<String> foo = new ArrayList<String>();
+			ArrayList<Boolean> bar = new ArrayList<Boolean>();
+			
 			for(int i=0; i<line.length(); i++) {
 				foo.add(line.substring(i,i+1));
+				bar.add(line.substring(i,i+1).equals("-"));
 			}
 			
 			board.add(foo);
+			originals.add(bar);
 		}
 		
 		unit = (int) Math.sqrt(board.size());
 		
 		print();
+		Print();
 	}
 	
 	private static void print() {
 		String s = "";
 		for(int i=0; i<board.size(); i++) {
 			for(int g=0; g<board.size(); g++) {
-				s += board.get(i).get(g) + " ";
+				if(originals.get(i).get(g)) {
+					s += "[32m";
+				}
+				else {
+					s += "[1;33m";
+				}
+				s += board.get(i).get(g) + "[0m ";
 				if(g!=board.size()-1 && (g+1)%unit==0) {
-					s += "[37m|[0m "; // Vertical pipe
+					s += "[36m|[0m "; // Vertical pipe
 				}
 			}
 			s += "\n";
 			if(i!=board.size()-1 && (i+1)%unit==0) {
-				s += "[37m" + new String(new char[board.size()+unit-1]).replace("\0", "― ") + "[0m\n"; // 'Horizontal Bar' U+2015
+				s += "[36m" + new String(new char[board.size()+unit-1]).replace("\0", "― ") + "[0m\n"; // 'Horizontal Bar' U+2015
+			}
+		}
+		System.out.println(s);
+	}
+	
+	private static void Print() {
+		String s = "";
+		for(int i=0; i<originals.size(); i++) {
+			for(int g=0; g<originals.size(); g++) {
+				s += (originals.get(i).get(g) ? "T" : "F") + " ";
+				if(g!=board.size()-1 && (g+1)%unit==0) {
+					s += "| ";
+				}
+			}
+			s += "\n";
+			if(i!=board.size()-1 && (i+1)%unit==0) {
+				s += new String(new char[board.size()+unit-1]).replace("\0", "― ") + "\n";
 			}
 		}
 		System.out.println(s);
