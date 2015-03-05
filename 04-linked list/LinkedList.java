@@ -50,6 +50,7 @@ public class LinkedList {
 			front.setNext(temp);
 			return;
 		}
+		
 		LNode next = this.getNode(i);
 		
 		LNode tempNext = next.getNext();
@@ -101,6 +102,12 @@ public class LinkedList {
 	
 	public char remove(int i) {
 		// removes the node at index i and return its value
+		
+		if(i==0) {
+			char toReturn = front.getData();
+			front = front.getNext();
+			return toReturn;
+		}
 		
 		LNode next = front;
 		

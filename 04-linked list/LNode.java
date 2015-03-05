@@ -23,5 +23,5 @@ public class LNode {
     }
     public LNode getNext() {
 		return next;
-    }    
+    }
 }

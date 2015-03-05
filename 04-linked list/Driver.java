@@ -42,7 +42,7 @@ public class Driver {
 		print(2);
 		print(-1); // oh well
 */		
-		LL = new LinkedList();
+/*		LL = new LinkedList();
 		LL.add('a');
 		LL.add('b');
 		LL.add('c');
@@ -51,6 +51,9 @@ public class Driver {
 		pr(0);
 		pr(0);
 		pr(0);
+		checkThings();
+*/		
+		
 	}
 	private static void checkThings() {
 		System.out.println(LL.toString());
