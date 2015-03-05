@@ -53,7 +53,14 @@ public class Driver {
 		pr(0);
 		checkThings();
 */		
+		LL = new LinkedList();
+		LL.add('A');
+		LL.add('B');
+		LL.add('C');
+		checkThings();
 		
+		pr(2);
+		pr(1);
 	}
 	private static void checkThings() {
 		System.out.println(LL.toString());
