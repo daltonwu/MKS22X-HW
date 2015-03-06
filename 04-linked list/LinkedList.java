@@ -103,11 +103,12 @@ public class LinkedList {
 	public char remove(int i) {
 		// removes the node at index i and return its value
 		
-		if(i==0) {
-			char toReturn = front.getData();
-			front = front.getNext();
+		if(i==this.size()-1) {
+			char toReturn = this.getNode(i).getData();
+			this.getNode(i-1).setNext() = null;
 			return toReturn;
 		}
+		
 		
 		LNode next = front;
 		
