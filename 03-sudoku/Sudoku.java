@@ -94,7 +94,10 @@ public class Sudoku {
 		// 		check if foo value work
 		// 		now check if foo value work in future
 		// 		blah
-		if(row >= board.size()) return true;
+		
+		if(row >= board.size()) {
+			return true;
+		}
 		
 		for(int g=0; g<board.size(); g++) {
 			if(board.get(row).get(g).equals("-")) {
@@ -117,6 +120,7 @@ public class Sudoku {
 	}
 	
 	private static boolean check(int row, int column) {
+		
 		// rows and columns
 		String thisThing = board.get(row).get(column);
 		for(int g=0; g<board.size(); g++) {
