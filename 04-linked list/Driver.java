@@ -60,7 +60,9 @@ public class Driver {
 		checkThings();
 		
 		pr(2);
+		checkThings();
 		pr(1);
+		checkThings();
 	}
 	private static void checkThings() {
 		System.out.println(LL.toString());
