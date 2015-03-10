@@ -4,7 +4,7 @@ import java.io.File;
 
 public class Sudoku {
 	private static ArrayList<ArrayList<String>> board;
-	private static ArrayList<ArrayList<Boolean>> originals; // make different color = true; original = false;
+	private static ArrayList<ArrayList<Boolean>> originals; // true --> make different color; false --> whatever;
 	
 	// Store side length of one small board unit
 	private static int unit;
@@ -85,7 +85,6 @@ public class Sudoku {
 	private static void solve() {
 		solveH(0);
 	}
-	
 	private static boolean solveH(int row) {
 		// if done, return true
 		// if not done:
