@@ -34,6 +34,9 @@ public class LinkedList {
 	
 	public void add( char c, int i ) {
 		
+		if ( i < 0 || i > size() )
+			throw new IndexOutOfBoundsException();
+		
 		LNode n = new LNode( c );
 		LNode curr = front;
 		
@@ -48,7 +51,7 @@ public class LinkedList {
 			return;
 		}
 		
-		while ( curr.getNext() != null && i > 1 ) {
+		while ( /*curr.getNext() != null &&*/ i > 1 ) {
 			curr = curr.getNext();
 			i--;
 		}
@@ -60,10 +63,13 @@ public class LinkedList {
 	
 	public char set( char c, int i ) {
 		
+		if ( i < 0 || i >= size() )
+			throw new IndexOutOfBoundsException();
+		
 		LNode curr = front;
 		char old = 0;
 		
-		while ( curr != null &&  i > 0 ) {
+		while ( /*curr != null &&*/ i > 0 ) {
 			curr = curr.getNext();
 			i--;
 		}
@@ -71,11 +77,15 @@ public class LinkedList {
 		if ( curr != null ) {
 			old = curr.getData();
 			curr.setData( c );
-		}		
+		}
+		
 		return old;
 	}
 	
 	public char get( int i ) {
+		
+		if ( i < 0 || i >= size() )
+			throw new IndexOutOfBoundsException();
 		
 		LNode curr = front;
 		
@@ -90,6 +100,9 @@ public class LinkedList {
 	}
 	
 	public char remove( int i ) {
+		
+		if ( i < 0 || i >= size() )
+			throw new IndexOutOfBoundsException();
 		
 		LNode curr = front;
 		char old = 0;
@@ -133,9 +146,9 @@ public class LinkedList {
 			
 		System.out.println( l );
 		
-		l.add( '0', 0 );
-		l.add( '1', 1 );
-		l.add( '2', 3 );
+		l.add( '0', 0 ); System.out.println( l.size() );
+		l.add( '1', 1 ); System.out.println( l.size() );
+		l.add( '2', 3 ); System.out.println( l.size() );
 		l.add( '3', 8 );
 		
 		System.out.println( l );
@@ -146,8 +159,8 @@ public class LinkedList {
 		System.out.println( l );
 		
 		System.out.println( l.get(0) );
-		System.out.println( l.get(5) );
-		System.out.println( l.get(9) );
+		System.out.println( l.get(5) ); System.out.printf("size = %d%n", l.size());
+		//System.out.println( l.get(9) );
 		
 		
 		System.out.println( l.remove(0) );
