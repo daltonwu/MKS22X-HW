@@ -97,31 +97,29 @@ public class Sudoku {
 		if(row >= board.size()) {
 			return true;
 		}
-		
+	/*	
 		for(int g=0; g<board.size(); g++) {
 			if(board.get(row).get(g).equals("-")) {
 				for(int foo=1; foo<=board.size(); foo++) {
-					board.get(row).set(g,String.valueOf(foo));
-					if(check(row,g) /*&& solveH(row)*/) {
+					//board.get(row).set(g,String.valueOf(foo));
+					if(check(row,g,foo)) {
 						System.out.printf("%s%n", board.get(row).get(g));
-						return solveH(row);
-					}
-					else {
+						if(solveH(row)) return true;
 						board.get(row).set(g,"-");
-						//System.out.printf("wefoij");
 					}
 				}
 				return false;
 			}
 		}
-		
+	*/	
 		return solveH(row+1);
 	}
 	
-	private static boolean check(int row, int column) {
+	private static boolean check(int row, int column, int foo) {
 		
 		// rows and columns
-		String thisThing = board.get(row).get(column);
+		// eh don't use this String thisThing = board.get(row).get(column);
+		String thisThing = String.valueOf(foo);
 		for(int g=0; g<board.size(); g++) {
 			if(g!=column && board.get(row).get(g).equals(thisThing)) return false;
 		}
@@ -136,6 +134,30 @@ public class Sudoku {
 			}
 		}
 		
-		return true;
+		// diagonals, snippet taken from NQueens cod3
+		String s = "";
+		int d = Math.min(row,column);
+		int a = row-d;
+		int b = column-d;
+		while(a<board.size() && b<board.size()) {
+			s += board.get(a).get(b);
+			a++;
+			b++;
+		}
+		a = row;
+		b = column;
+		while(a>=0 && b<board.size()) {
+			s += board.get(a).get(b);
+			a--;
+			b++;
+		}
+		a = row;
+		b = column;
+		while(a<board.size() && b>=0) {
+			s += board.get(a).get(b);
+			a++;
+			b--;
+		}
+		return s.indexOf(thisThing) == -1;
 	}
 }
