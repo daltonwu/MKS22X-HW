@@ -92,18 +92,23 @@ public class Sudoku {
 		// 		at next empty thing, get foo value
 		// 		check if foo value work
 		// 		now check if foo value work in future
+		// 			to do this, check solveH(row)
 		// 		blah
 		
 		if(row >= board.size()) {
 			return true;
 		}
-	/*	
 		for(int g=0; g<board.size(); g++) {
 			if(board.get(row).get(g).equals("-")) {
 				for(int foo=1; foo<=board.size(); foo++) {
 					//board.get(row).set(g,String.valueOf(foo));
+					System.out.printf("%b, foo is %d, we are at %d,%d%n", /*check(row,g,foo), checks(row,g,foo),*/ diagonalCheck(row,g,foo),foo, row, g);
+					print();
+					try { Thread.sleep(100); }
+					catch(Exception e) {}
 					if(check(row,g,foo)) {
-						System.out.printf("%s%n", board.get(row).get(g));
+						board.get(row).set(g,String.valueOf(foo));
+						//System.out.printf("%s%n", board.get(row).get(g));
 						if(solveH(row)) return true;
 						board.get(row).set(g,"-");
 					}
@@ -111,14 +116,15 @@ public class Sudoku {
 				return false;
 			}
 		}
-	*/	
 		return solveH(row+1);
 	}
 	
 	private static boolean check(int row, int column, int foo) {
-		
+		return checks(row, column, foo) && diagonalCheck(row, column, foo);
+	}
+	private static boolean checks(int row, int column, int foo) {
 		// rows and columns
-		// eh don't use this String thisThing = board.get(row).get(column);
+		// String thisThing = board.get(row).get(column);
 		String thisThing = String.valueOf(foo);
 		for(int g=0; g<board.size(); g++) {
 			if(g!=column && board.get(row).get(g).equals(thisThing)) return false;
@@ -133,8 +139,11 @@ public class Sudoku {
 				if(i!=row && g!=column && board.get(i).get(g).equals(thisThing)) return false;
 			}
 		}
-		
+		return true;
+	}
+	private static boolean diagonalCheck(int row, int column, int foo) {
 		// diagonals, snippet taken from NQueens cod3
+		String thisThing = String.valueOf(foo);
 		String s = "";
 		int d = Math.min(row,column);
 		int a = row-d;
