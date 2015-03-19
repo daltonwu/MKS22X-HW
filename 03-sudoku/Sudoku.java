@@ -102,10 +102,10 @@ public class Sudoku {
 			if(board.get(row).get(g).equals("-")) {
 				for(int foo=1; foo<=board.size(); foo++) {
 					//board.get(row).set(g,String.valueOf(foo));
-					System.out.printf("%b, foo is %d, we are at %d,%d%n", /*check(row,g,foo), checks(row,g,foo),*/ diagonalCheck(row,g,foo),foo, row, g);
+					/*System.out.printf("chks%bchk%bdchk%b, foo is %d, we are at %d,%d%n", check(row,g,foo), checks(row,g,foo), diagonalCheck(row,g,foo),foo, row, g);
 					print();
 					try { Thread.sleep(100); }
-					catch(Exception e) {}
+					catch(Exception e) {}*/
 					if(check(row,g,foo)) {
 						board.get(row).set(g,String.valueOf(foo));
 						//System.out.printf("%s%n", board.get(row).get(g));
@@ -134,9 +134,9 @@ public class Sudoku {
 		}
 		
 		// that darn box
-		for(int i=row/unit; i<row/unit+unit; i++) {
-			for(int g=column/unit; g<column/unit+unit; g++) {
-				if(i!=row && g!=column && board.get(i).get(g).equals(thisThing)) return false;
+		for(int i=row/unit * unit; i<row/unit * unit + unit; i++) {
+			for(int g=column/unit * unit; g<column/unit * unit + unit; g++) {
+				if(i!=row && g!=column && board.get(i).get(g).equals(thisThing)) {System.out.printf("fuck row=%d column=%d",i,g); return false;}
 			}
 		}
 		return true;
