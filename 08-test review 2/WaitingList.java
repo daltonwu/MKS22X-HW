@@ -34,8 +34,27 @@ public class WaitingList
 	// precondition:  size() > 0;
 	//                0 < num <= other.size()
 	public void transferNodesFromEnd(WaitingList other, int num)
-	{  /* to be implemented in part (b) */  
-		if(
+	{  /* to be implemented in part (b) */ 
+		// minimalist diagram:
+		//     nodeA | nodeB
+		
+		if(num==other.size()) {
+			ListNode nodeA = other.getKthNode(0);
+			ListNode here = this.getKthNode(this.size());
+			here.setNext(nodeA);
+			other = new WaitingList();
+			// I'm sorry, I DON'T KNOW HOW TO DO THIS
+			// (how to reset the other chain, because I can't reset front, a private variable)
+			return;
+		}
+		
+		ListNode nodeA = other.getKthNode(other.size()-num);
+		ListNode nodeB = other.getKthNode(other.size()-num+1);
+		ListNode here = this.getKthNode(this.size()-1);
+		
+		here.setNext(nodeB);
+		nodeA.setNext(null);
+		return;
 	}
 	
 	// There may be fields, constructors, and methods that are not shown.
