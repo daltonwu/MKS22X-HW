@@ -39,12 +39,10 @@ public class WaitingList
 		//     nodeA | nodeB
 		
 		if(num==other.size()) {
-			ListNode nodeA = other.getKthNode(0);
+			ListNode nodeA = other.front;
 			ListNode here = this.getKthNode(this.size());
 			here.setNext(nodeA);
-			other = new WaitingList();
-			// I'm sorry, I DON'T KNOW HOW TO DO THIS
-			// (how to reset the other chain, because I can't reset front, a private variable)
+			other.front = null;
 			return;
 		}
 		
