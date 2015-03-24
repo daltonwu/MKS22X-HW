@@ -1,4 +1,5 @@
-public class LinkedList<E>{
+public class LinkedList<E>
+{
 	private ListNode front;
 	private int size;
 	
@@ -7,7 +8,7 @@ public class LinkedList<E>{
 		size = 0;
 	}
 	
-	public String toString {
+	public String toString() {
 		String s = "[";
 		ListNode next = front;
 		
@@ -34,6 +35,7 @@ public class LinkedList<E>{
 		if(index<0 || index>size()) {
 			throw new IndexOutOfBoundsException;
 		}
+		
 		if(size==0) {
 			front = new ListNode(data);
 			return;
@@ -44,8 +46,13 @@ public class LinkedList<E>{
 			front.setNext(temp);
 			return;
 		}
-		return
+		
+		ListNode next = this.getNode(index);
+		ListNode tempNext = next.getNext();
+		next.setNext(new ListNode(data));
+		next.getNext().setNext(tempNext);
 	}
+	
 	public LinkedNode getNode(int index) {
 		// returns the node at index, hopefully
 		
@@ -56,5 +63,11 @@ public class LinkedList<E>{
 		}
 		
 		return next;
+	}
+	
+	public E set(E data, int index) {
+		if(index<0 || index>size) {
+			throw new IndexOutOfBoundsException();
+		}
 	}
 }
