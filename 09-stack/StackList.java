@@ -15,7 +15,7 @@ public class StackList {
 		temp.setNext(top);
 		top = temp;
 	}
-	public isEmpty() {
+	public boolean isEmpty() {
 		return top==null;
 	}
 	public LNode peek() {

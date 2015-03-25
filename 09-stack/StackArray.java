@@ -30,7 +30,6 @@ public class StackArray {
 		// http://grepcode.com/file/repository.grepcode.com/java/root/jdk/openjdk/6-b14/java/util/ArrayList.java#ArrayList.ensureCapacity%28int%29
 		int oldSize = data.length;
 		if(minSize > oldSize) {
-			data = new char[]
 			int newSize = oldSize * 3/2 + 1;
 			if(newSize < minSize)
 				newSize = minSize;
