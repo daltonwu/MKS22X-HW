@@ -1,50 +1,24 @@
-public StackList
-{
-	private LNode front;
-	private int size;
+public class StackList {
+	private LNode top;
 	
 	public StackList() {
-		front = null;
-		size = 0;
+		top = null;
 	}
 	
 	public LNode pop() {
-		if(size==0)
-			return null;
-		
-		LNode temp = getNode(size);
-		this.getNode(size-1).setNext(null);
+		LNode temp = top;
+		top = top.getNext();
 		return temp;
 	}
-	
 	public void push(char c) {
-		if(size==0) {
-			front = new LNode(c);
-		} else {
-			this.getNode(size).setNext(new LNode(c));
-		}
-		size++;
+		LNode temp = new LNode(c);
+		temp.setNext(top);
+		top = temp;
 	}
-	
-	public void peek() {
-		return size==0?null:getNode(size-1);
+	public isEmpty() {
+		return top==null;
 	}
-	
-	public boolean isEmpty() {
-		return size==0;
-	}
-	
-	private getNode(int index) {
-		if(index<0 || index>size) {
-			throw new IndexOutOfBoundsException;
-		}
-		
-		LNode next = front;
-		while(index>1) {
-			front = front.getNext();
-			index--;
-		}
-		
-		return next;
+	public LNode peek() {
+		return top;
 	}
 }
