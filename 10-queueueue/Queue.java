@@ -1,4 +1,5 @@
 public class Queue {
+	// add to back, remove from front
 	LNode head;
 	
 	public Queue() {
@@ -6,23 +7,35 @@ public class Queue {
 	}
 	
 	public void enqueue(LNode n) {
-		n.setNext(head);
-		head = n;
+		this.checkNull();
+		LNode next = head;
+		while(next!=null) {
+			next = next.getNext();
+		}
+		next.setNext(n);
 	}
 	
 	public LNode dequeue() {
-		if(head==null)
-			throw new NullPointerException();
+		this.checkNull();
 		LNode temp = head;
 		head = head.getNext();
 		return head;
 	}
 	
 	public LNode peek() {
-		return head;
+		LNode next = head;
+		while(next!=null) {
+			next = next.getNext();
+		}
+		return next;
 	}
 	
 	public boolean isEmpty() {
 		return head==null;
+	}
+	
+	private void checkNull() {
+		if(head==null)
+			throw new NullPointerException();
 	}
 }
