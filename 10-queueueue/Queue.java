@@ -1,33 +1,32 @@
 public class Queue {
 	// add to back, remove from front
 	LNode head;
+	LNode tail;
 	
 	public Queue() {
 		head = null;
+		almostEnd = null;
 	}
 	
 	public void enqueue(LNode n) {
-		this.checkNull();
-		LNode next = head;
-		while(next!=null) {
-			next = next.getNext();
+		if(head==null) {
+			head = n;
+			tail = n;
+			return;
 		}
-		next.setNext(n);
+		tail.setNext(n);
+		tail = tail.getNext();
 	}
 	
 	public LNode dequeue() {
 		this.checkNull();
 		LNode temp = head;
 		head = head.getNext();
-		return head;
+		return temp;
 	}
 	
 	public LNode peek() {
-		LNode next = head;
-		while(next!=null) {
-			next = next.getNext();
-		}
-		return next;
+		return head;
 	}
 	
 	public boolean isEmpty() {
