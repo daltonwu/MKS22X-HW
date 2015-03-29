@@ -145,7 +145,7 @@ public class Sort {
 	  
 	  Swaps the values at postitons a and b in list
 	  ====================*/	
-	public static void swap(int a, int b, int[] list) {
+	public static void swap(int[] list, int a, int b) {
 		int c = list[a];
 		list[a] = list[b];
 		list[b] = c;
@@ -168,8 +168,18 @@ public class Sort {
 	  This method must run in linear time.
 	  ====================*/
 	public static int partition(int[] a, int start, int end) {
-		
-		return -1;		
+		int mid = start/2 + end/2 + ((start%2 == 1) ? 1 : end%2);
+		int pivotVal = a[mid];
+		int front = start;
+		swap(a, mid, end);
+		for(int i=start; i<end; i++) {
+			if(a[i] < pivotVal) {
+				swap(a, i, front);
+				front++;
+			}
+		}
+		swap(a, front, end);
+		return front;
 	}
 	
 	
@@ -197,5 +207,26 @@ public class Sort {
 		list = mergeSort(list);
 		System.out.println( show( list ) );
 		*/
+		//Testing quiquesort
+		int[] q1 = new int[20];
+		populate(q1);
+		System.out.println(show(q1));
+		int foo = partition(q1, 0, q1.length-1);
+		System.out.printf("pivotIndex = %d, pivotVal = %d%n", foo, q1[foo]);
+		System.out.printf("%s%n%n", show(q1));
+		
+		int[] q2 = new int[20];
+		populate(q2);
+		System.out.println(show(q2));
+		int bar = partition(q2, 0, q2.length/2);
+		System.out.printf("pivotIndex = %d, pivotVal = %d%n", bar, q2[bar]);
+		System.out.printf("%s%n%n", show(q2));
+		
+		int[] q3 = new int[20];
+		populate(q3);
+		System.out.println(show(q3));
+		int meh = partition(q3, 10, 19);
+		System.out.printf("pivotIndex = %d, pivotVal = %d%n", bar, q3[meh]);
+		System.out.printf("%s%n%n", show(q3));
 	}
 }
