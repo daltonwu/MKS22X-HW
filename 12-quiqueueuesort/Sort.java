@@ -182,7 +182,9 @@ public class Sort {
 		return front;
 	}
 	
-	
+	public static int[] quicksort(int[] a) {
+		quique
+	}
 	
 	
 	public static void main(String[] args) {
