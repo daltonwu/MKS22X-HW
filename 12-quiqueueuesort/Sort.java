@@ -9,8 +9,10 @@
   for a given sort.
 =========================*/
 
-import java.io.*;
-import java.util.*;
+//import java.io.*;
+//import java.util.*;
+import java.util.Arrays;
+import java.util.Random;
 
 public class Sort {
 	
@@ -182,10 +184,17 @@ public class Sort {
 		return front;
 	}
 	
-	public static int[] quicksort(int[] a) {
-		quique
+	public static void quicksort(int[] a) {
+		quiquesort(a, 0, a.length-1);
 	}
 	
+	public static void quiquesort(int[] a, int start, int end) {
+		if(start < end) {
+			int div = partition(a, start, end);
+			quiquesort(a, start, div-1);
+			quiquesort(a, div+1, end);
+		}
+	}
 	
 	public static void main(String[] args) {
 		//Testing mergeSort
@@ -210,7 +219,7 @@ public class Sort {
 		System.out.println( show( list ) );
 		*/
 		//Testing quiquesort
-		int[] q1 = new int[20];
+		/*int[] q1 = new int[20];
 		populate(q1);
 		System.out.println(show(q1));
 		int foo = partition(q1, 0, q1.length-1);
@@ -229,6 +238,14 @@ public class Sort {
 		System.out.println(show(q3));
 		int meh = partition(q3, 10, 19);
 		System.out.printf("pivotIndex = %d, pivotVal = %d%n", bar, q3[meh]);
-		System.out.printf("%s%n%n", show(q3));
+		System.out.printf("%s%n%n", show(q3));*/
+		
+		for(int i=0; i<100000; i++) {
+			int[] qu1 = new int[i];
+			populate(qu1);
+			quicksort(qu1);
+			System.out.printf("%b%d%n", isSorted(qu1), i);
+		}
+		
 	}
 }
