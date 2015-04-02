@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class StackCalc {
 	public static boolean isOperator(char c) {
 		return "-+*/".contains(String.valueOf(c));
@@ -14,14 +16,13 @@ public class StackCalc {
 		for(int i=0; i<infix.length(); i++) {
 			char c = infix.charAt(i);
 			if(isOperator(c)) {
-				if(ops.isEmpty()) {
-					ops.push(c);
+				while(!ops.isEmpty() && getPriority(c) <= getPriority(ops.peek())) {
+					postfix += ops.pop();
 				}
-				else {
-					while(!ops.isEmpty() && getPriority(ops.peek()) >= getPriority(c)) {
-						postfix += ops.pop();
-					}
-				}
+				ops.push(c);
+			}
+			else {
+				postfix += c;
 			}
 		}
 		
@@ -32,7 +33,7 @@ public class StackCalc {
 		return postfix;
 	}
 	
-	public static double evaluate(double b, double a, char operator) {
+	public static double evaluate(double a, double b, char operator) {
 		switch(operator) {
 			case '+':	return a+b;
 			case '-':	return a-b;
@@ -47,9 +48,9 @@ public class StackCalc {
 		for(int i=0; i<postfix.length(); i++) {
 			char c = postfix.charAt(i);
 			if(isOperator(c)) {	
-				double a = values.pop();
 				double b = values.pop();
-				values.push(evaluate(b, a, c));
+				double a = values.pop();
+				values.push(evaluate(a, b, c));
 			}
 			else {
 				values.push((double) Character.getNumericValue(c));
@@ -65,6 +66,14 @@ public class StackCalc {
 		
 		System.out.println(p);
 		
-		//System.out.println(calculate(p));
+		System.out.println(calculate(p) + "\n\n[1mNow input more things![0m (Keep in mind, roughly 15 to 17 decimal sig figs.)");
+		
+		while(true) {
+			Scanner input = new Scanner(System.in);
+			s = input.nextLine();
+			p = toPostfix(s);
+			System.out.println("[37;40mrpn: " + p + "[0m");
+			System.out.println("[30;47mans: " + calculate(p) + "[0m\n");
+		}
 	}
 }
