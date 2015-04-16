@@ -10,8 +10,8 @@ public class TreeNode<E> {
 		return "" + data;
 	}
 	
-	public void setData(E c) {
-		data = c;
+	public void setData(E d) {
+		data = d;
 	}
 	public void setLeft(TreeNode l) {
 		left = l;
