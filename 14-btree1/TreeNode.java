@@ -1,6 +1,6 @@
 public class TreeNode<E> {
 	private E data;
-	private TreeNode left, right;
+	private TreeNode<E> left, right;
 	
 	public TreeNode(E d) {
 		data = d;
@@ -13,20 +13,20 @@ public class TreeNode<E> {
 	public void setData(E d) {
 		data = d;
 	}
-	public void setLeft(TreeNode l) {
+	public void setLeft(TreeNode<E> l) {
 		left = l;
 	}
-	public void setRight(TreeNode r) {
+	public void setRight(TreeNode<E> r) {
 		right = r;
 	}
 	
 	public E getData() {
 		return data;
 	}
-	public TreeNode getLeft() {
+	public TreeNode<E> getLeft() {
 		return left;
 	}
-	public TreeNode getRight() {
+	public TreeNode<E> getRight() {
 		return right;
 	}
 }

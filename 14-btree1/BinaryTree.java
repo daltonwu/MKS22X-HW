@@ -6,8 +6,10 @@
   jdyrlandweaver
   =========================*/
 
-import java.io.*;
-import java.util.*;
+/*import java.io.*;
+import java.util.*;*/
+
+import java.util.Random;
 
 public class BinaryTree<E> {
 	public static final int PRE_ORDER = 0;
@@ -46,26 +48,34 @@ public class BinaryTree<E> {
 	  one of curr's children. Choose the child to be
 	  added to randomly.
 	  ====================*/
-	public boolean add(TreeNode<E> curr, TreeNode<E> bt) {i
-		if(curr == null) {
-			return false;
-		}
-		if(curr.getLeft() == null) {
+	public void add(TreeNode<E> curr, TreeNode<E> bt) {
+		if(curr == null)
+			return;
+		
+		if(curr.getLeft() == null)
 			curr.setLeft(bt);
-			return false;
-		}
-		if(curr.getRight() == null) {
+		else if(curr.getRight() == null)
 			curr.setRight(bt);
-			return false;
+		else {
+			Random rand = new Random();
+			if(rand.nextInt(2) == 0)
+				add(curr.getLeft(), bt);
+			else
+				add(curr.getRight(), bt);
 		}
-		return (add(curr.getLeft(), bt) ? true : add(curr.getRight()));
 	}
 	
 	public void traverse(int mode) {
 		switch(mode) {
-			case PRE_ORDER: preOrder(root);
-			case IN_ORDER: inOrder(root);
-			case default: postOrder(root);
+			case PRE_ORDER:
+				preOrder(root);
+				break;
+			case IN_ORDER:
+				inOrder(root);
+				break;
+			default:
+				postOrder(root);
+				break;
 		}
 		System.out.println();
 	}
@@ -77,6 +87,11 @@ public class BinaryTree<E> {
 	  pre-order traversal.
 	  ====================*/
 	public void preOrder(TreeNode<E> curr) {
+		if(curr == null)
+			return;
+		System.out.println(curr.getData());
+		preOrder(curr.getLeft());
+		preOrder(curr.getRight());
 	}
 	
 	
@@ -88,6 +103,11 @@ public class BinaryTree<E> {
 	  in-order traversal.
 	  ====================*/
 	public void inOrder(TreeNode<E> curr) {
+		if(curr == null)
+			return;
+		inOrder(curr.getLeft());
+		System.out.println(curr.getData());
+		inOrder(curr.getRight());
 	}
 	
 	/*======== public void postOrder() ==========
@@ -101,11 +121,16 @@ public class BinaryTree<E> {
 	  jdyrlandweaver
 	  ====================*/
 	public void postOrder(TreeNode<E> curr) {
+		if(curr == null)
+			return;
+		postOrder(curr.getLeft());
+		postOrder(curr.getRight());
+		System.out.println(curr.getData());
 	}
 	
 	
 	public static void main(String[] args) {
-		BinaryTree<Integer> t = new BinaryTree<Integer>();
+		BinaryTree<Integer> t = new BinaryTree<>();
 		
 		for(int i=0; i<8; i++)
 			t.add(i);
