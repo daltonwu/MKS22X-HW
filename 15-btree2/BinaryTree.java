@@ -166,11 +166,17 @@ public class BinaryTree<E> {
 			return "";
 		}
 		if(currLevel == level) {
-			return curr.getLeft() + "\t" + curr.getRight() + "\t";
+			return new String(new char[getHeight(curr)-1]).replace("\0", "\t") + curr + "\t";
 		}
 		return getLevel(curr.getLeft(), level, currLevel+1) + getLevel(curr.getRight(), level, currLevel+1);
 	}
-	
+	public String gL2(TreeNode<E> curr, int level, int currLevel) {
+		if(curr == null)
+			return "";
+		if(currLevel == level)
+			return curr + "";
+		return gL2(curr.getLeft(), level, currLevel+1) + gL2(curr.getRight(), level, currLevel+1);
+	}
 	/*======== public String toString()) ==========
 	  Inputs:   
 	  Returns: A string representation of the tree
@@ -201,7 +207,14 @@ public class BinaryTree<E> {
 		}
 		return str;
 	}
-	
+	public String tS2() {
+		String str = "";
+		int lim = getHeight(root);
+		for(int i=0; i<lim; i++) {
+			str += gL2(root, i, 0) + "\n";
+		}
+		return str;
+	}
 	public static void main(String[] args) {
 		BinaryTree<Integer> t = new BinaryTree<>();
 		
@@ -214,7 +227,8 @@ public class BinaryTree<E> {
 		t.traverse(IN_ORDER);
 		System.out.println("Post-order: ");
 		t.traverse(POST_ORDER);
-		System.out.println("Height: " + t.getHeight());
+		System.out.println("Height: " + t.getHeight() + "\n");
 		System.out.println(t);
+		System.out.println(t.tS2());
 	}
 }
