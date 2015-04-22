@@ -34,10 +34,10 @@ public class BinarySearchTree<T extends Comparable<? super T>> {
 			curr = t;
 		}
 		else if(t.getData().compareTo(curr.getData()) < 0) {
-			add(curr.getLeft(), t);
+			curr.setLeft(add(curr.getLeft(), t));
 		}
 		else {
-			add(curr.getRight(), t);
+			curr.setRight(add(curr.getRight(), t));
 		}
 		
 		return curr;
@@ -62,39 +62,54 @@ public class BinarySearchTree<T extends Comparable<? super T>> {
 	  curr, if it exists.
 	  ====================*/
 	public BinarySearchTreeNode<T> remove(BinarySearchTreeNode<T> curr, T c) {
-		if(curr == null) return null;
-		int compare = curr.getData().compareTo(c);
+		if(curr == null)
+			return null; //?????
+		
+		int compare = c.compareTo(curr.getData());
+		
 		if(compare == 0) {
-			if(isLeaf(curr)) return null;
-			if(curr.getLeft() == null) {
-				curr = curr.getRight();
+			if(isLeaf(curr))
+				return null;
+			else if(curr.getLeft() == null) {
+				return curr.getRight();
 			}
-			if(curr.getRight() == null) {
-				curr = curr.getLeft();
+			else if(curr.getRight() == null) {
+				return curr.getLeft();
 			}
 			else {
-				curr = rhs(curr).setRight(curr.getRight());
+				BinarySearchTreeNode<T> temp = rhs(curr);
+				temp.setRight(curr.getRight());
+				temp.setLeft(curr.getLeft());
+				return temp;
 			}
 		}
 		else if(compare < 0) {
-			curr = remove(curr.getLeft(), c);
+			curr.setLeft(remove(curr.getLeft(), c));
+			return curr;
 		}
 		else {
-			curr = remove(curr.getRight(), c);
+			curr.setRight(remove(curr.getRight(), c));
+			return curr;
 		}
-		
-		return curr;
 	}
 	
 	// run lhs() on getRight()
 	public BinarySearchTreeNode<T> lhs(BinarySearchTreeNode<T> curr) {
 		if(isLeaf(curr.getLeft())) {
-			
-		}? curr : lhs(curr.getLeft()));
+			BinarySearchTreeNode<T> temp = curr.getLeft();
+			curr.setLeft(null);
+			return temp;
+		}
+		return lhs(curr.getLeft());
 	}
 	// run rhs() on getLeft()
 	public BinarySearchTreeNode<T> rhs(BinarySearchTreeNode<T> curr) {
-		return (isLeaf(curr) ? curr : rhs(curr.getRight()));
+		if(isLeaf(curr.getRight())) {
+			BinarySearchTreeNode<T> temp = curr.getRight();
+			curr.setRight(null);
+			return temp;
+		}
+		return rhs(curr.getRight());
 	}
 	
 	/*======== public void inOrder()) ==========
@@ -162,6 +177,16 @@ public class BinarySearchTree<T extends Comparable<? super T>> {
 	}
 	
 	public static void main(String[] args) {
-		
+		BinarySearchTree<Integer> bst = new BinarySearchTree<>();
+		bst.add(0);
+		bst.add(10);
+		bst.add(-10);
+		bst.add(20);
+		bst.add(-20);
+		bst.add(5);
+		bst.add(-5);
+		bst.inOrder();
+		bst.remove(-10);
+		bst.inOrder();
 	}
 }
