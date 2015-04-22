@@ -1,4 +1,4 @@
-public class BinarySearchTreeNode<T extends Comparable> {
+public class BinarySearchTreeNode<T extends Comparable<? super T>> {
 	private T data;
 	private BinarySearchTreeNode<T> left, right;
 	

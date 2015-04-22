@@ -1,4 +1,4 @@
-public class BinarySearchTree<T extends Comparable> {
+public class BinarySearchTree<T extends Comparable<? super T>> {
 	public BinarySearchTreeNode<T> root;
 	
 	public BinarySearchTree() {
@@ -25,12 +25,22 @@ public class BinarySearchTree<T extends Comparable> {
 	/*======== public BinarySearchTreeNode<T> add() ==========
 	  Inputs:  BinarySearchTreeNode<T> curr
 	           BinarySearchTreeNode<T> t 
-	  Returns: 
-
+	  Returns: BinarySearchTreeNode<T> curr
+	  
 	  Add t to the correct place in the tree rooted at curr.
 	  ====================*/
 	public BinarySearchTreeNode<T> add(BinarySearchTreeNode<T> curr, BinarySearchTreeNode<T> t) {
-		return null;
+		if(curr == null) {
+			curr = t;
+		}
+		else if(t.getData().compareTo(curr.getData()) < 0) {
+			add(curr.getLeft(), t);
+		}
+		else {
+			add(curr.getRight(), t);
+		}
+		
+		return curr;
 	}
 	
 	/*======== public void remove() ==========
@@ -45,16 +55,47 @@ public class BinarySearchTree<T extends Comparable> {
 	
 	/*======== public BinarySearchTreeNode<T> remove() ==========
 	  Inputs:   BinarySearchTreeNode<T> curr
-		T c
-	  Returns: 
-
-	  Should remove the value c from the tree rooted at
+	            T c
+	  Returns:  BinarySearchTreeNode<T> curr
+	  
+	  Removes the value c from the tree rooted at
 	  curr, if it exists.
 	  ====================*/
 	public BinarySearchTreeNode<T> remove(BinarySearchTreeNode<T> curr, T c) {
-		return null;
+		if(curr == null) return null;
+		int compare = curr.getData().compareTo(c);
+		if(compare == 0) {
+			if(isLeaf(curr)) return null;
+			if(curr.getLeft() == null) {
+				curr = curr.getRight();
+			}
+			if(curr.getRight() == null) {
+				curr = curr.getLeft();
+			}
+			else {
+				curr = rhs(curr).setRight(curr.getRight());
+			}
+		}
+		else if(compare < 0) {
+			curr = remove(curr.getLeft(), c);
+		}
+		else {
+			curr = remove(curr.getRight(), c);
+		}
+		
+		return curr;
 	}
 	
+	// run lhs() on getRight()
+	public BinarySearchTreeNode<T> lhs(BinarySearchTreeNode<T> curr) {
+		if(isLeaf(curr.getLeft())) {
+			
+		}? curr : lhs(curr.getLeft()));
+	}
+	// run rhs() on getLeft()
+	public BinarySearchTreeNode<T> rhs(BinarySearchTreeNode<T> curr) {
+		return (isLeaf(curr) ? curr : rhs(curr.getRight()));
+	}
 	
 	/*======== public void inOrder()) ==========
 	  Inputs:   
