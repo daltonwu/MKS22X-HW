@@ -1,0 +1,23 @@
+$ /usr/local/processing/processing
+
+Processing
+	A Java-based programming environment with an
+	emphasis on graphic programming.
+	
+	
+	Most of what you can do in Java can be done in Processing.
+	
+	Key differences between Processing and Java:
+		No protection; everything is public
+		
+		Default type for floating point values is float
+		
+		You need to have 2 methods in your "main" file: setup() and draw()
+		
+		setup()
+			Creates the window, sets intial properties
+			
+			Happens once when the program starts
+		
+		draw()
+			Runs continuously, some number of times per second
