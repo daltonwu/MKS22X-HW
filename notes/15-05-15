@@ -1,0 +1,33 @@
+Thursday, 14 May 2015.
+
+Aim: What is a genetic algorithm?
+
+Do Now: Go to one of these sites
+	1)	http://rednuht.org/genetic_walkers/
+	2)	http://rednuht.org/genetic_cars_2/
+
+
+Genetic Algorithms
+	
+	Algorithms that use concepts from natural
+	evolution to solve hard problems.
+	
+	Natural selection, mutatuion, genetic crossover
+	all can be mimicked in a genetic algorithm
+	
+	Often used to try and solve problems with an
+	enormous search space where it is close to
+	impossible to try all potential solutions.
+	
+	General steps:
+		1.	Define the problem and identify the traits
+		2.	Create an encoding scheme
+		3.	Generate a random population
+		4.	Evaluate the fitness of each individual
+		5.	"Randomly" select pairs of individuals
+			to mate, giving the more fit ones a
+			greater chance of being selected,
+			and create a new population from the
+			result of the mating.
+		6.	Apply the mutation factor to the new
+			population and go back to step 4.
