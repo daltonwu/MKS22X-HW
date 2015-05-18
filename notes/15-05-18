@@ -1,0 +1,25 @@
+Monday, 18 May 2015
+
+
+Aim: How to select parents for genetic programming?
+
+
+Parent Selection for Mating
+	
+	Selecting parents should be done randomly, but
+	more fit individuals should have a better chance
+	of being selected.
+	
+	Tournament Selection
+		
+		Pick 2 random members of the population,
+		compare their fitness values, and select
+		the one with the greater fitness value.
+		
+	Roulette Wheel Selection
+		
+		Find the sum of all the fitness values in the current population (f).
+		
+		Pick a random floating point number between 0 and f (r).
+		
+		Go through each member of the population and add their fitness values until you have a number larger than r, then select the individual you have stopped on.
