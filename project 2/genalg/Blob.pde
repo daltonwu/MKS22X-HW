@@ -10,9 +10,7 @@
     xFactor: "wobble" foctor in the x direction
     yFactor: "wobble" factor in the y direction
   ====================================*/
-
 class Blob {
-  
   int numSides;
   int radius;
   float x;
@@ -20,41 +18,38 @@ class Blob {
   int xFactor;
   int yFactor;
   
-  Blob(float cx, float cy, int n, int l, int xf, int yf ) {
-    
+  Blob(float cx, float cy, int n, int r, int xf, int yf ) {
     x = cx;
     y = cy;
     numSides = n;
-    radius = l;
+    radius = r;
     xFactor = xf;
     yFactor = yf;
   }
   
   void display() {
-   
     float nx;
     float ny;
-    int rx, ry;
-    
+    int rx;
+    int ry;
     float sy;
-  
+    
     strokeWeight(1);
     beginShape();
-    for( float t = 0; t <= 1; t+=( 1.0/numSides ) ) {
-      
+    for(float t=0; t<=1; t+=(1.0/numSides)) {
       /*
-      "wobble" effect is created by adding a random number to each
-      x and y coordinate. The larger the x and y factors, the higher
-      the possible wobble value could be
+        "wobble" effect is created by adding a random number to each
+        x and y coordinate. The larger the x and y factors, the higher
+        the possible wobble value
       */
       rx = (int)random(xFactor);
       ry = (int)random(yFactor);
       
-      nx = radius * cos( 2 * PI * t ) + x + rx;
-      ny = radius * sin( 2 * PI * t ) + y + ry;
+      nx = radius * cos(TWO_PI*t) + x + rx;
+      ny = radius * sin(TWO_PI*t) + y + ry;
       
       vertex(nx, ny);
-    }      
+    }
     endShape();
   }
 }

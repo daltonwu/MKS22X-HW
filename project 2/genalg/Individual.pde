@@ -17,14 +17,12 @@
         A regular polygon object with traits that correspond to
         the values found in chromosome.
       fitness
-        how "close" the Individual is to the desired state
+        How "close" the Individual is to the desired state
 ====================================*/
-
 class Individual {
-  
   /*=====================================
-  Number of genes in each chromosome and the
-  unique indentifier for each gene type
+    Number of genes in each chromosome and the
+    unique indentifiers for each gene type
   ====================================*/
   int CHROMOSOME_LENGTH = 7;
   int SIDES = 0;
@@ -34,11 +32,11 @@ class Individual {
   int BLUE_COLOR = 4;
   int X_FACTOR = 5;
   int Y_FACTOR = 6;
-
+  
   /*=====================================
-  Constants defining how long each gene will be.
-  For initial development set these to lower
-  values to make testing easier.
+    Constants defining how long each gene will be.
+    For initial development, set these to lower
+    values to make testing easier.
   ====================================*/
   int SIDE_GENE_SIZE = 6;
   int RADIUS_GENE_SIZE = 5;
@@ -49,73 +47,102 @@ class Individual {
   Gene[] chromosome;
   Blob phenotype;
   float fitness;
-  
 
   /*=====================================
-  Create a new Individual by setting each entry in chromosome
-  to a new randomly created gene of the appropriate length.
-  
-  After the array is populated, set phenotype to a new regular polygon
-  with center cx, cy and properties that align with gene values.
-  (for example, if the side gene is 4, the regular polygon should have 4
-    sides...)
+    Create a new Individual by setting each entry in chromosome
+    to a new randomly created gene of the appropriate length.
+    
+    After the array is populated, set phenotype to a new regular polygon
+    with center cx, cy and properties that align with gene values.
+    (for example, if the side gene is 4, the regular polygon should have 4
+      sides...)
   ====================================*/
   Individual(float cx, float cy) {
-    for(Gene g : chromosome) {
-      g = new Gene(g.geneLength);
+    chromosome = new Gene[CHROMOSOME_LENGTH];
+    chromosome[SIDES] = new Gene(SIDE_GENE_SIZE);
+    chromosome[RAD] = new Gene(RADIUS_GENE_SIZE);
+    // RED_COLOR, GREEN_COLOR, BLUE_COLOR
+    for(int i=2; i<=4; i++) {
+      chromosome[i] = new Gene(COLOR_GENE_SIZE);
+    }
+    // X_FACTOR, Y_FACTOR
+    for(int i=5; i<=6; i++) {
+      chromosome[i] = new Gene(FACTOR_GENE_SIZE);
     }
     
-    
+    setPhenotype(cx, cy);
   }
-
+  
+  Individual(float cx, float cy, Gene[] chromo) {
+    chromosome = new Gene[CHROMOSOME_LENGTH];
+    for(int i=0; i<CHROMOSOME_LENGTH; i++) {
+      chromosome[i] = chromo[i];
+    }
+    
+    setPhenotype(cx, cy);
+  }
   /*=====================================
-  Call the display method of the phenotype, make sure to set the fill
-  color appropriately
+    Call the display method of the phenotype. Make sure
+    to set the fill color appropriately.
   ====================================*/
   void display() {
-  }
-
-  /*=====================================
-  Set phenotype to a new regulargon with center cx, cy and 
-    properties that align with gene values.
-  ====================================*/
-  void setPhenotype(int cx, int cy) {      
+    phenotype.display();
   }
   
   /*=====================================
-  Print the value of each gene in chromosome, useful for
-  debugging and development
+    Set phenotype to a new regular polygon with center (cx, cy) 
+    and properties that align with gene values.
   ====================================*/
- void printIndividual() {
-     println( chromosome[0].value );
- }
-
+  void setPhenotype(float cx, float cy) {
+    phenotype = new Blob(cx, cy, chromosome[SIDES].value, chromosome[RAD].value, chromosome[X_FACTOR].value, chromosome[Y_FACTOR].value);
+  }
+  
+  /*=====================================
+    Print the value of each gene in chromosome.
+    Useful for debugging and development.
+  ====================================*/
+  void printIndividual() {
+    for(Gene g : chromosome) {
+      println(g.value);
+    }
+  }
+  
   /*=====================================
     Return a new Individual based on the genes of the calling
-    chromosome and the parameter, "other". A random number of
-    genes should be taken from one of the 2 individuals and the
+    chromosome and the parameter other. A random number of
+    genes should be taken from this individual and the
     rest from the other.
-    The phenotype of the new Individual must be set, using cs and cy
-    as the center
+    The phenotype of the new Individual must be set, using cx and cy
+    as the center.
   ====================================*/
- Individual mate(Individual other, int cx, int cy) {
-   return null;
- }
-
+  Individual mate(Individual other, int cx, int cy) {
+    Gene[] newChromo = new Gene[CHROMOSOME_LENGTH];
+    for(int i=0; i<CHROMOSOME_LENGTH; i++) {
+      if(int(random(1))==0) {
+        newChromo[i] = chromosome[i];
+      }
+      else {
+        newChromo[i] = other.chromosome[i];
+      }
+    }
+    
+    Individual newIndividual = new Individual(cx, cy, newChromo); // What genius!
+    return newIndividual;
+  }
+  
   /*=====================================
     Set the fitness value of the calling individual by
-    comparing it to the parameter, "goal"
-    The closer the two are, the higher the fitness value
-    should be
+    comparing it to the parameter goal.
+    The closer the two are, the higher the fitness value.
   ====================================*/
- void setFitness( Individual goal ) {
- }
-
+  void setFitness(Individual goal) {
+    // TBD
+  }
+  
   /*=====================================
     Call the mutate method on a random number
     of genes.
   ====================================*/
- void mutate() {
- }
-
+  void mutate() {
+  }
 }

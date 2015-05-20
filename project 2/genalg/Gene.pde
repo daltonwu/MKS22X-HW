@@ -5,10 +5,7 @@
       value: corresponding base 10 number of the genotype
       geneLength: desired length of the gene
   ====================================*/
-
-
 class Gene {
-
   int geneLength;
   int[] genotype;
   int value;
@@ -19,12 +16,15 @@ class Gene {
   a 1 or a 0, then calcuate the value.
   ====================================*/
   Gene(int l) {
-    genotype = new int[l];
+    geneLength = l;
+    genotype = new int[geneLength];
+    
     String s = "";
     for(int bit : genotype) {
       bit = int(random(1));
       s += str(bit);
     }
+    
     value = Integer.parseInt(s,2);
   }
   
@@ -33,19 +33,25 @@ class Gene {
     of the parameter
   ====================================*/
   Gene(Gene g) {
+    geneLength = g.geneLength;
     genotype = new int[geneLength];
+    
+    String s = "";
     for(int i=0; i<geneLength; i++) {
-      genotype[i] = g[i];
+      genotype[i] = g.genotype[i];
+      s += str(genotype[i]);
     }
+    
+    value = Integer.parseInt(s,2);
   }
-       
+  
   /*=====================================
     Pick a random element from genotype
     and switch it from 1 to 0 or vice-versa
   ====================================*/ 
   void mutate() {
-    int i = random(genotype.length);
-    genotype[i] = genotype[i] == 1 ? 0 : 1;
+    int i = int(random(geneLength));
+    genotype[i] = (genotype[i]==1 ? 0 : 1);
   }
   
   /*=====================================
@@ -57,6 +63,7 @@ class Gene {
     for(int bit : genotype) {
       s += str(bit);
     }
+    
     value = Integer.parseInt(s,2);
   }
   
@@ -65,8 +72,7 @@ class Gene {
     Used for debugging and development only
   ====================================*/
   void display() {
-    
-    println( genotype );
-    println( value );
+    println(genotype);
+    println(value);
   }
 }
