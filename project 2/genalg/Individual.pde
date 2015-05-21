@@ -136,7 +136,14 @@ class Individual {
     The closer the two are, the higher the fitness value.
   ====================================*/
   void setFitness(Individual goal) {
-    // TBD
+    float diff = 0.000;
+    float total = 0.000;
+    for(int i=0; i<CHROMOSOME_LENGTH; i++) {
+      // Add up difference, divide by total, result = percentage.
+      diff += abs(goal.chromosome[i].value - chromosome[i].value);
+      total += pow(chromosome[i].geneLength, 2);
+    }
+    fitness = 100.000 * (1-diff/total);
   }
   
   /*=====================================
@@ -144,5 +151,10 @@ class Individual {
     of genes.
   ====================================*/
   void mutate() {
+    for(Gene g : chromosome) {
+      if(int(random(1))==0) {
+        g.mutate();
+      }
+    }
   }
 }
