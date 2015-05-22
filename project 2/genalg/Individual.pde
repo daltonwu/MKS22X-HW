@@ -86,6 +86,7 @@ class Individual {
     to set the fill color appropriately.
   ====================================*/
   void display() {
+    fill(chromosome[2].value, chromosome[3].value, chromosome[4].value);
     phenotype.display();
   }
   

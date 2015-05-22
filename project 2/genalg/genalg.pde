@@ -1,5 +1,5 @@
 // Constants
-int POPULATION_SIZE = 1;
+int POPULATION_SIZE = 10;
 
 // Global variables
 int selectedX;
@@ -12,8 +12,10 @@ int speed;
 int generation;
 float mutationRate = 0.05;
 
-int RADIUS = 100; // radius of the grid; research wath RADIUS means
-int WIDTH = ceil(sqrt(POPULATION_SIZE));
+int GRID_RADIUS = 100; // radius of the grid; note, is one-half the grid width
+int GRID_WIDTH = 2 * GRID_RADIUS;
+int GRID_COUNT = ceil(sqrt(POPULATION_SIZE));
+int WIDTH = GRID_COUNT * GRID_RADIUS; // window width
 
 // The individuals
 Individual[] population;
@@ -24,9 +26,29 @@ Individual selected;
   generated individuals.
   Set up the basic window properties.
   ====================================*/
+/*
+  i            x          y
+  0            100        100
+  1            300        
+  2            500
+  3            700
+  ___
+  4                       300
+  5
+  6
+  7
+  ___
+  8
+*/
+
 void setup() {
-  size(RADIUS * WIDTH, RADIUS * WIDTH);
-  
+  size(WIDTH, WIDTH);
+  population = new Individual[POPULATION_SIZE];
+  for(int i=0; i<POPULATION_SIZE; i++) {
+    float cx = GRID_RADIUS * (2 * (i % GRID_COUNT) + 1);
+    float cy = GRID_RADIUS * (2 * (i / GRID_COUNT) + 1);
+    population[i] = new Individual(cx, cy);
+  }
 }
 
 /*=====================================
@@ -39,6 +61,9 @@ void setup() {
   If mating mode is set to continuous, call mating season.
   ====================================*/
 void draw() {
+  for(Individual i : population) {
+    i.display();
+  }
 }
 
 /*=====================================
@@ -89,6 +114,7 @@ Individual select() {
   in the population, unmodified.
   ==================================*/
 void matingSeason() {
+  
 }
 
 /*====================================
@@ -96,6 +122,7 @@ void matingSeason() {
   in the population.
   ==================================*/
 void mutate() {
+  
 }
 
 /*====================================
