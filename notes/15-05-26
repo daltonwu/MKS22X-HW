@@ -1,3 +1,9 @@
 Aim: What are hash tables?
 
+Hash Table
+	An array-based structure where the location of each value in the array is found by applying a hash function to the value.
 
+	Hash Function
+		A hash function is designed to take in a value and return a unique value, called a hash code.
+		
+		The same input will always return the same hash code, but you cannot reverse the process to get the original value from the hash code itself.
