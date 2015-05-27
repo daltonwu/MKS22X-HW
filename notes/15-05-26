@@ -7,3 +7,9 @@ Hash Table
 		A hash function is designed to take in a value and return a unique value, called a hash code.
 		
 		The same input will always return the same hash code, but you cannot reverse the process to get the original value from the hash code itself.
+
+	Hash Collisions
+		
+		A hash collision occurs when 2 different values have the same hash code.
+
+		The 2 most common solutions to hash collisions are separate chaining and open addressing.
