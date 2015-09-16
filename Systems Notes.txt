@@ -1,0 +1,56 @@
+2015-09-10
+Aim: Time to C what we can do.
+
+Do Now: What command line programs would do the following?
+	(always assume you are starting at your home directory)
+	
+	1) Move foo.java from Desktop/ to Documents/
+	2) Remove all .class files
+	3) Connect to lisa.stuy.edu from someplace else
+	4) Figure out what gcc does
+	5) Copy woohoo.c from your home directory to a /code/ directory on homer (assume you are not working on homer itself)
+
+
+
+2015-09-11
+Aim: C what I did there?
+
+Do now:
+
+	From yesterday:
+		4) Figure out what gcc does
+		5) Copy woohoo.c from your home directory to a /code/ directory on homer (assume you are not working on homer itself)
+		
+	Today:
+		List the Java primitive variable types
+		* byte
+		* short
+		* int
+		* long
+		* float
+		* double
+		* boolean
+		* char
+		
+	Last Class Today!
+	
+		Every day, 1 student will be chosen at random to provide a recap of the previous day's class.
+		
+		That evening, the same person will be responsible for posting the notes to the class Piazza page. Make sure to tag the note as "last class today".
+		
+			Title the note LCT <MM/DD WEEKDAY>
+			For example: LCT 9/10 Thursday
+			
+			Also include at the end of the note a link to an interesting piece of tech/science news.
+
+
+
+Wed 2015-09-16
+Aim: Variables are the spice of life.
+
+Do Now: What is the smallest variable type that could be used to store the following values (using standard sizes)?
+
+	1) 5				byte
+	2) -30,000			short
+	3) 255				short
+	4) 5,000,000,000	float
